@@ -12,6 +12,8 @@ import csv.masters.kotlin101.databinding.ActivityMainBinding
 //class MainActivity : AppCompatActivity(), View.OnClickListener {
 class MainActivity : AppCompatActivity() {
 
+    private val STATE_MESSAGE = "STATE_MESSAGE"
+
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var textView: TextView
@@ -40,6 +42,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        savedInstanceState?.let { savedBundle ->
+            binding.tvMyText.text = savedBundle.getString(STATE_MESSAGE, "Hello World")
+        }
+
         with(binding) {
             btClick.setOnClickListener {
                 tvMyText.text = "Kotlin Masters 101 With View Binding"
@@ -54,4 +60,9 @@ class MainActivity : AppCompatActivity() {
 //    override fun onClick(p0: View?) {
 //        textView.text = "Kotlin Masters 101 From Inheritance"
 //    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString(STATE_MESSAGE, binding.tvMyText.text.toString())
+        super.onSaveInstanceState(outState)
+    }
 }
