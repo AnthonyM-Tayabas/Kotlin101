@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">Kotlin 101</string>
     <string name="click_me">Click Me</string>
+    <string name="open_new_activity">Open New Activity</string>
+    <string name="intent">Intent</string>
+    <string name="view_binding">View Binding</string>
+    <string name="data">Data</string>
+    <string name="explicit_intent">Explicit Intent</string>
+    <string name="implicit_intent">Implicit Intent</string>
+    <string name="open_in_url">Open in URL</string>
+    <string name="dial_number">Dial number</string>
+    <string name="message">Message</string>
+    <string name="open_new_activity_for_results">Open New Activity For Results</string>
+    <string name="reply_message">Reply Message</string>
+    <string name="reply_to_previous_page">Reply to previous page</string>
+    <string name="second_page_s_response">{Second Page\'s Response}</string>
 </resources>
