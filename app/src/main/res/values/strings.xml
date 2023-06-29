@@ -14,4 +14,7 @@
     <string name="reply_message">Reply Message</string>
     <string name="reply_to_previous_page">Reply to previous page</string>
     <string name="second_page_s_response">{Second Page\'s Response}</string>
+    <string name="open_third_page">Open Third Page</string>
+    <string name="third_page">Hello from Third Page</string>
+    <string name="lifecycle">Lifecycle</string>
 </resources>
