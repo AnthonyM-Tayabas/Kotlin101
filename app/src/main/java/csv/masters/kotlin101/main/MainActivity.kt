@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import csv.masters.kotlin101.databinding.ActivityMainBinding
+import csv.masters.kotlin101.recyclerview.MyMotivation
 import csv.masters.kotlin101.second.SecondActivity
 import csv.masters.kotlin101.second.SecondActivity.Companion.EXTRA_REPLY
 import csv.masters.kotlin101.third.ThirdActivity
@@ -108,6 +109,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 startActivity(intent)
             }
+
+            btOpenRecyclerView?.setOnClickListener {
+                val intent = Intent(this@MainActivity, MyMotivation::class.java)
+                startActivity(intent)
+            }
+
         }
     }
 

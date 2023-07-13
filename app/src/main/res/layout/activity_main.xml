@@ -1,156 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.MainActivity">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".1"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".9"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glTop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".05"/>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/llViewBinding"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="@id/glTop">
+        android:layout_height="wrap_content">
 
-        <TextView
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/view_binding"
-            android:textSize="24sp"
-            android:textStyle="bold"/>
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".1" />
 
-        <TextView
-            android:id="@+id/tvMyText"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            android:textSize="20sp"/>
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".9" />
 
-        <Button
-            android:id="@+id/btClick"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/click_me"/>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/llIntent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="@id/glEnd"
-        app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toBottomOf="@id/llViewBinding">
-
-        <TextView
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/intent"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".05" />
 
-        <EditText
-            android:id="@+id/etDataForNextPage"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:autofillHints="@string/message"
-            android:hint="@string/message" />
-
-        <Button
-            android:id="@+id/btOpenActivity"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llViewBinding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/open_new_activity" />
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="@id/glTop">
 
-        <TextView
-            android:id="@+id/tvResponse"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/view_binding"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvMyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello World!"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/click_me" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llIntent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/second_page_s_response"
-            android:layout_marginTop="16dp"
-            android:textSize="20sp" />
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@id/glEnd"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintTop_toBottomOf="@id/llViewBinding">
 
-        <Button
-            android:id="@+id/btOpenActivityForResults"
-            android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/intent"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etDataForNextPage"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:autofillHints="@string/message"
+                android:hint="@string/message" />
+
+            <Button
+                android:id="@+id/btOpenActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/open_new_activity" />
+
+            <TextView
+                android:id="@+id/tvResponse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/second_page_s_response"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btOpenActivityForResults"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/open_new_activity_for_results" />
+
+            <EditText
+                android:id="@+id/etData"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:autofillHints="@string/data"
+                android:hint="@string/data" />
+
+            <Button
+                android:id="@+id/btOpenInBrowser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/open_in_url" />
+
+            <Button
+                android:id="@+id/btDialNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dial_number" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llLifecycle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/open_new_activity_for_results" />
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@id/glEnd"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintTop_toBottomOf="@id/llIntent">
 
-        <EditText
-            android:id="@+id/etData"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:autofillHints="@string/data"
-            android:hint="@string/data"
-            android:layout_marginTop="16dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lifecycle"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btOpenInBrowser"
-            android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btOpenThird"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/open_third_page" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llRecyclerView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/open_in_url" />
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@id/glEnd"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintTop_toBottomOf="@id/llLifecycle">
 
-        <Button
-            android:id="@+id/btDialNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/dial_number" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recycler_view"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
+            <Button
+                android:id="@+id/btOpenRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/open_recycler_view_page" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/llLifecycle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="@id/glEnd"
-        app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toBottomOf="@id/llIntent">
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lifecycle"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btOpenThird"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/open_third_page"/>
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
