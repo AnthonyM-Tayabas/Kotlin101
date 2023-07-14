@@ -1,13 +1,20 @@
 package csv.masters.kotlin101.main
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import csv.masters.kotlin101.data.api.RetrofitClient
+import csv.masters.kotlin101.data.api.UserInterface
 import csv.masters.kotlin101.databinding.ActivityMainBinding
 import csv.masters.kotlin101.recyclerview.MyMotivation
 import csv.masters.kotlin101.second.SecondActivity
@@ -26,6 +33,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        checkHardwarePermission()
 
         // A: Implementing Click Listener via Inheritance
 //        button.setOnClickListener(this)
@@ -50,6 +59,8 @@ class MainActivity : AppCompatActivity() {
         // C: Layout and Java Class binding using view binding feature
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        getAllUsers()
 
         Log.d("Lifecycle", "${MainActivity::class.java.simpleName} onCreate()")
 
@@ -118,6 +129,80 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun getAllUsers() {
+        val retrofitClient = RetrofitClient.getInstance()
+        val userService = retrofitClient.create(UserInterface::class.java)
+
+        lifecycleScope.launchWhenCreated {
+            val response = userService.getAllUsers()
+            Log.d("API Response", "$response")
+        }
+
+    }
+
+    private fun checkHardwarePermission() {
+        if(applicationContext.packageManager.hasSystemFeature(
+                PackageManager.FEATURE_CAMERA_ANY
+        )) {
+            Toast.makeText(this@MainActivity, "With Camera", Toast.LENGTH_SHORT).show()
+
+            when {
+                ContextCompat.checkSelfPermission(
+                    this@MainActivity,
+                    CAMERA
+                ) == PackageManager.PERMISSION_GRANTED -> {
+                    Toast.makeText(this@MainActivity, "Thank you for granting access", Toast.LENGTH_SHORT).show()
+                }
+                shouldShowRequestPermissionRationale(CAMERA) -> {
+                    Toast.makeText(this@MainActivity, "This makes us sad", Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    // Individual permission request
+//                    requestPermissionLauncher.launch(
+//                        Manifest.permission.CAMERA
+//                    )
+
+                    requestPermissions(
+                        arrayOf(CAMERA),
+                        REQ_CAMERA
+                    )
+                }
+            }
+
+
+
+        } else {
+            Toast.makeText(this@MainActivity, "Without Camera", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode) {
+            REQ_CAMERA -> {
+                if (grantResults.isNotEmpty() &&
+                        grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this@MainActivity, "Thank you for the access", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this@MainActivity, "Why?", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+            else -> {
+
+            }
+        }
+    }
+
+    companion object {
+        private const val CAMERA = Manifest.permission.CAMERA
+        private const val REQ_CAMERA = 1
+    }
+
     override fun onStart() {
         super.onStart()
         Log.d("Lifecycle", "${MainActivity::class.java.simpleName} onStart()")
@@ -161,6 +246,14 @@ class MainActivity : AppCompatActivity() {
             it.data?.let { intent ->
                 binding.tvResponse?.text = intent.getStringExtra(EXTRA_REPLY)
             }
+        }
+    }
+
+    private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+        if (isGranted) {
+            Toast.makeText(this@MainActivity, "RESULT: Thank you for granting access", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this@MainActivity, "RESULT: This makes us sad", Toast.LENGTH_SHORT).show()
         }
     }
 
