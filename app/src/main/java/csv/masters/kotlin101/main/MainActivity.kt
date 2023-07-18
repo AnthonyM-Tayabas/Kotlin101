@@ -17,9 +17,14 @@ import csv.masters.kotlin101.data.api.RetrofitClient
 import csv.masters.kotlin101.data.api.UserInterface
 import csv.masters.kotlin101.databinding.ActivityMainBinding
 import csv.masters.kotlin101.recyclerview.MyMotivation
+import csv.masters.kotlin101.retrofit.RetrofitActivity
 import csv.masters.kotlin101.second.SecondActivity
 import csv.masters.kotlin101.second.SecondActivity.Companion.EXTRA_REPLY
 import csv.masters.kotlin101.third.ThirdActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.math.BigInteger
 
 // A: Implementing Click Listener via Inheritance
 //class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -59,8 +64,6 @@ class MainActivity : AppCompatActivity() {
         // C: Layout and Java Class binding using view binding feature
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        getAllUsers()
 
         Log.d("Lifecycle", "${MainActivity::class.java.simpleName} onCreate()")
 
@@ -126,18 +129,19 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
+            btOpenRetrofit?.setOnClickListener {
+                startActivity(Intent(this@MainActivity, RetrofitActivity::class.java))
+            }
+
+            btMainThread?.setOnClickListener {
+                factorialOnMainThread(binding.etInput?.text.toString().toInt())
+            }
+
+            btCoroutine?.setOnClickListener {
+                factorialOnCoroutine(binding.etInput?.text.toString().toInt())
+            }
+
         }
-    }
-
-    private fun getAllUsers() {
-        val retrofitClient = RetrofitClient.getInstance()
-        val userService = retrofitClient.create(UserInterface::class.java)
-
-        lifecycleScope.launchWhenCreated {
-            val response = userService.getAllUsers()
-            Log.d("API Response", "$response")
-        }
-
     }
 
     private fun checkHardwarePermission() {
@@ -193,6 +197,36 @@ class MainActivity : AppCompatActivity() {
 
             }
             else -> {
+
+            }
+        }
+    }
+
+    private fun factorialOnMainThread(input: Int) {
+        var factorial = BigInteger.ONE
+
+        for (i in 1 .. input) {
+            factorial = factorial.multiply(BigInteger.valueOf(i.toLong()))
+        }
+
+        Log.d("FACTORIAL", "Output: $factorial")
+        binding.tvOutput?.text = factorial.toString()
+    }
+
+    private fun factorialOnCoroutine(input: Int) {
+        lifecycleScope.launch {
+            withContext(Dispatchers.Default) {
+                var factorial = BigInteger.ONE
+
+                for (i in 1 .. input) {
+                    factorial = factorial.multiply(BigInteger.valueOf(i.toLong()))
+                }
+
+                Log.d("FACTORIAL", "Output: $factorial")
+
+                withContext(Dispatchers.Main) {
+                    binding.tvOutput?.text = factorial.toString()
+                }
 
             }
         }

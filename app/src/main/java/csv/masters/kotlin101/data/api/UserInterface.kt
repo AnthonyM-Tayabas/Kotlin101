@@ -7,4 +7,7 @@ import retrofit2.http.GET
 interface UserInterface {
     @GET("/api/users?page=2")
     suspend fun getAllUsers(): Response<UserResponse>
+
+    @GET("/api/users")
+    suspend fun getUser(id: String): Response<UserResponse>
 }

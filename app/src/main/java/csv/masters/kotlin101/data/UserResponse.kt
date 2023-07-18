@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class UserResponse(
     @SerializedName("data")
-    var `data`: List<Data>,
+    var `data`: List<User>,
     @SerializedName("page")
     var page: Int,
     @SerializedName("per_page")
@@ -17,7 +17,7 @@ data class UserResponse(
     @SerializedName("total_pages")
     var totalPages: Int
 ) {
-    data class Data(
+    data class User(
         @SerializedName("avatar")
         var avatar: String,
         @SerializedName("email")
@@ -28,7 +28,9 @@ data class UserResponse(
         var id: Int,
         @SerializedName("last_name")
         var lastName: String
-    )
+    ) {
+        fun fullName() = "$firstName $lastName"
+    }
 
     data class Support(
         @SerializedName("text")

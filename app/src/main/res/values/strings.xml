@@ -30,4 +30,11 @@
     <string name="affirmation8" translatable="false">I have the courage to follow my heart.</string>
     <string name="affirmation9" translatable="false">Things will unfold at precisely the right time.</string>
     <string name="affirmation10" translatable="false">I will be present in all the moments that this day brings.</string>
+    <string name="retrofit">Retrofit</string>
+    <string name="open_retrofit_sample">Open Retrofit Sample</string>
+    <string name="concurrency">Concurrency</string>
+    <string name="number">Number</string>
+    <string name="output">Output</string>
+    <string name="run_on_main_thread">Run on Main Thread</string>
+    <string name="run_using_coroutine">Run using Coroutine</string>
 </resources>
