@@ -7,10 +7,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import csv.masters.kotlin101.data.UserResponse
+import csv.masters.kotlin101.data.User
+import csv.masters.kotlin101.data.UserListResponse
 import csv.masters.kotlin101.databinding.ItemUserBinding
 
-class UserAdapter(private val users: List<UserResponse.User>) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter(private val users: List<User>) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     inner class UserViewHolder(val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -43,9 +44,9 @@ class UserAdapter(private val users: List<UserResponse.User>) : RecyclerView.Ada
         }
     }
 
-    private var onClickListener: ((UserResponse.User) -> Unit)? = null
+    private var onClickListener: ((User) -> Unit)? = null
 
-    fun setOnClickListener(listener: (UserResponse.User) -> Unit) {
+    fun setOnClickListener(listener: (User) -> Unit) {
         onClickListener = listener
     }
 

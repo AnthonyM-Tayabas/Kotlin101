@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         Log.d("Lifecycle", "${MainActivity::class.java.simpleName} onCreate()")
 
         savedInstanceState?.let { savedBundle ->

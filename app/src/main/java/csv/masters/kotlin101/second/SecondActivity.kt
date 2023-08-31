@@ -1,10 +1,12 @@
 package csv.masters.kotlin101.second
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import csv.masters.kotlin101.R
+import csv.masters.kotlin101.data.manager.DataStoreManager
 import csv.masters.kotlin101.databinding.ActivitySecondBinding
 
 class SecondActivity : AppCompatActivity() {
@@ -17,7 +19,21 @@ class SecondActivity : AppCompatActivity() {
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val messageFromFirstActivity = intent.getStringExtra(EXTRA_MESSAGE)
+        var messageFromFirstActivity = intent.getStringExtra(EXTRA_MESSAGE)
+
+        val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
+        val savedMessage = sharedPref.getString(SAVED_MESSAGE, null)
+
+        val dataStoreManager = DataStoreManager(this@SecondActivity)
+
+        if (savedMessage == null) {
+            with(sharedPref.edit()) {
+                putString(SAVED_MESSAGE, messageFromFirstActivity)
+                apply()
+            }
+        } else {
+            messageFromFirstActivity = "$messageFromFirstActivity + Saved Message: $savedMessage"
+        }
 
         // Handling passed data from first page
         messageFromFirstActivity?.let { message ->
@@ -39,5 +55,6 @@ class SecondActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_MESSAGE = "EXTRA_MESSAGE"
         const val EXTRA_REPLY = "EXTRA_REPLY"
+        const val SAVED_MESSAGE = "SAVED_MESSAGE"
     }
 }

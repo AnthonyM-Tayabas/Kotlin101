@@ -33,10 +33,12 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/llViewBinding"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintEnd_toEndOf="@id/glEnd"
             app:layout_constraintTop_toTopOf="@id/glTop">
 
             <TextView
