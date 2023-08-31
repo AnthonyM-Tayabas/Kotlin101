@@ -104,8 +104,9 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this@MainActivity, SecondActivity::class.java)
                 intent.putExtra(SecondActivity.EXTRA_MESSAGE, "First page needs your reply")
                 startForResult.launch(intent)
-                val intentForThirdActivity = Intent(this@MainActivity, ThirdActivity::class.java)
-                startForResultOnPage3.launch(intentForThirdActivity)
+
+//                val intentForThirdActivity = Intent(this@MainActivity, ThirdActivity::class.java)
+//                startForResultOnPage3.launch(intentForThirdActivity)
                 //startActivityForResult()
             }
 
